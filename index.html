@@ -35,17 +35,17 @@
 								<li><a href="#intro">Intro</a></li>
 								<li><a href="#work">Work</a></li>
 								<li><a href="#contact">Contact</a></li>
-								<li><a href="#tidbits">Words</a></li>
+								<li><a href="#words">Words</a></li>
 							</ul>
 						</nav>
 					</header>
 
 				<!-- Up indicator -->
-					<div id="up-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','work','contact','tidbits'];var idx=order.indexOf(h);window.scrollTo(0,0);if(idx>0){location.hash='#'+order[idx-1];}else{location.hash='';}})(event);" style="cursor:pointer;">
+					<div id="up-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','work','contact','words'];var idx=order.indexOf(h);window.scrollTo(0,0);if(idx>0){location.hash='#'+order[idx-1];}else{location.hash='';}})(event);" style="cursor:pointer;">
 					</div>
 
 				<!-- Scroll indicator -->
-					<div id="scroll-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','work','contact','tidbits'];var idx=order.indexOf(h);if(idx===-1){location.hash='#intro';}else if(idx<order.length-1){window.scrollTo(0,0);location.hash='#'+order[idx+1];};})(event);" style="cursor:pointer;">
+					<div id="scroll-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','work','contact','words'];var idx=order.indexOf(h);if(idx===-1){location.hash='#intro';}else if(idx<order.length-1){window.scrollTo(0,0);location.hash='#'+order[idx+1];};})(event);" style="cursor:pointer;">
 					</div>
 
 				<!-- Main -->
@@ -90,10 +90,10 @@
 
 							</article>
 
-						<!-- Tidbits -->
-							<article id="tidbits">
+						<!-- Words -->
+							<article id="words">
 								<h2 class="major">Words</h2>
-								<div id="tidbits-entries"></div>
+								<div id="words-entries"></div>
 							</article>
 
 						<!-- Contact -->

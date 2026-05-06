@@ -40,7 +40,7 @@
 		updateUpIndicator();
 
 	// Scroll through panels in order.
-		var navOrder = ['intro', 'work', 'contact', 'tidbits'];
+		var navOrder = ['intro', 'work', 'contact', 'words'];
 		var scrollLocked = false;
 
 		$window.on('wheel', function(event) {
@@ -381,13 +381,13 @@
 				]).then(function(results) {
 					var history     = results[0];
 					var reflections = results[1];
-					var container   = document.getElementById('tidbits-entries');
+					var container   = document.getElementById('words-entries');
 					container.innerHTML = '';
 					history.forEach(function(entry, i) {
 						var wordEl = document.createElement('h3');
 						wordEl.textContent = entry.word;
 						var dateEl = document.createElement('p');
-						dateEl.className = 'tidbits-date';
+						dateEl.className = 'words-date';
 						dateEl.textContent = entry.date;
 						container.appendChild(wordEl);
 						container.appendChild(dateEl);

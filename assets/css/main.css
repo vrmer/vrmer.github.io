@@ -1680,7 +1680,7 @@ input, select, textarea {
 		transform: rotate(45deg) translateY(4px);
 	}
 
-	.tidbits-date {
+	.words-date {
 		font-size: 0.7rem;
 		opacity: 0.4;
 		letter-spacing: 0.15rem;
