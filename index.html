@@ -21,13 +21,13 @@
 				<!-- Header -->
 					<header id="header">
 						<div class="logo">
-							<a href="#intro" tabindex="-1" style="display:block;width:100%;height:100%;outline:none;text-decoration:none;-webkit-tap-highlight-color:transparent;" onmousedown="this.blur();"><img src="images/marcell_profile.jpeg" alt="Marcell Fekete" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></a>
+							<a href="#intro" tabindex="-1" style="display:block;width:100%;height:100%;outline:none;text-decoration:none;-webkit-tap-highlight-color:transparent;" onmousedown="this.blur();"><img src="images/marcell_funny.JPG" alt="Marcell Fekete" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></a>
 						</div>
 						<div class="content">
 							<div class="inner">
 								<h1>Marcell Fekete</h1>
-								<p>PhD Fellow in Multilingual NLP &bull; Aalborg University<br />
-								Researching data-efficient methods for resource-poor languages.</p>
+								<p>PhD Fellow in Computational Linguistics &bull; Aalborg University (Copenhagen)<br />
+								Comparing the linguistic competence of language models and humans</p>
 							</div>
 						</div>
 						<nav>
@@ -42,12 +42,10 @@
 
 				<!-- Up indicator -->
 					<div id="up-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','work','contact','tidbits'];var idx=order.indexOf(h);window.scrollTo(0,0);if(idx>0){location.hash='#'+order[idx-1];}else{location.hash='';}})(event);" style="cursor:pointer;">
-						<span class="icon fa-solid fa-chevron-up"></span>
 					</div>
 
 				<!-- Scroll indicator -->
 					<div id="scroll-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','work','contact','tidbits'];var idx=order.indexOf(h);if(idx===-1){location.hash='#intro';}else if(idx<order.length-1){window.scrollTo(0,0);location.hash='#'+order[idx+1];};})(event);" style="cursor:pointer;">
-						<span class="icon fa-solid fa-chevron-down"></span>
 					</div>
 
 				<!-- Main -->
@@ -79,50 +77,24 @@
 							<article id="work">
 								<h2 class="major">Work</h2>
 
-								<h3>Gradual Language Model Adaptation Using Fine-Grained Typology</h3>
-								<span class="image main"><img src="images/thumbs/Graphical_abstract.png" alt="" /></span>
-								<p>Extended abstract accepted at the SIGTYP workshop, presented at EACL 2023 in Dubrovnik. <a href="images/fulls/Fekete_poster.pdf">View poster &rarr;</a></p>
+								<h3>Test</h3>
+								<!-- <span class="image main"><img src="image_path" alt="" /></span> -->
+								<p>Test</p>
 
-								<hr />
+								<!-- if I want a divider -->
+								<!-- <hr /> -->
 
-								<h3>Typological Challenges for the Application of Multilingual Language Models in the Digital Humanities</h3>
-								<span class="image main"><img src="images/fulls/book-g7d03ce3e0_1920.jpg" alt="" /></span>
-								<p>Abstract accepted for the submission of a full chapter in the volume <a href="https://www.c2dh.uni.lu/news/cfp-chapters-solicited-edited-volume-multilingual-dh">Multilingual DH</a>. Collaboration with Lisa Beinborn and Johannes Bjerva.</p>
+								<!-- 
 
-								<hr />
+								<hr /> -->
 
-								<h3>Cross-lingual Transfer of Multilingual Language Models Using Stacked Language Adapters</h3>
-								<span class="image main"><img src="images/thumbs/adapter-bert.png" alt="" /></span>
-								<p>Thesis internship project with the Vrije Universiteit Amsterdam and TAUS. Image credits to <a href="https://docs.adapterhub.ml/adapter_composition.html">AdapterHub</a>.</p>
-
-								<hr />
-
-								<h3>Dimensionality Reduction of Multilingual Sentence Embeddings using Autoencoders</h3>
-								<span class="image main"><img src="images/thumbs/autoencoder.png" alt="" /></span>
-								<p>Internship project with TAUS. Image credits to Arden Dertat on <a href="https://towardsdatascience.com/applied-deep-learning-part-3-autoencoders-1c083af4d798">Towards Data Science</a>.</p>
-
-								<hr />
-
-								<h3>Part-of-speech Tagging Using the Hidden Layers of Multilingual BERT</h3>
-								<p>Comparing layer-wise performance between English and Hungarian. Cross-lingual linguistic probing using multilingual BERT, a project for <a href="https://lotschool.nl">LOT (Netherlands Research School of Linguistics)</a>.</p>
-
-								<hr />
-
-								<h3>Joint Processing of Attribution Components with Contextual Embeddings</h3>
-								<span class="image main"><img src="images/work/attribution_processing.png" alt="" /></span>
-								<p>Group project at Vrije Universiteit Amsterdam, using <a href="https://huggingface.co/docs/transformers/model_doc/distilbert">DistilBERT</a> to carry out attribution linking.</p>
-
-								<hr />
-
-								<h3>Chronicling Novelty: Tracking the Development of Numeracy between the 15th and 19th Centuries in Dutch Speakers</h3>
-								<span class="image main"><img src="images/work/Chronicling_novelty.png" alt="" /></span>
-								<p>Group project at Vrije Universiteit Amsterdam as part of the larger project <a href="https://chroniclingnovelty.com">Chronicling Novelty</a>.</p>
 							</article>
 
 						<!-- Tidbits -->
 							<article id="tidbits">
 								<h2 class="major">Tidbits</h2>
-								<p>Coming soon.</p>
+								<h3 id="tidbits-word"></h3>
+								<p id="tidbits-reflection"><em>No reflection yet for today.</em></p>
 							</article>
 
 						<!-- Contact -->

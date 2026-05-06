@@ -1663,12 +1663,21 @@ input, select, textarea {
 		justify-content: center;
 		-webkit-align-items: center;
 		align-items: center;
-		color: #ffffff;
-		font-size: 1.5rem;
 		z-index: 10;
 		-webkit-animation: scrollBounce 1.6s ease-in-out infinite;
 		animation: scrollBounce 1.6s ease-in-out infinite;
 		pointer-events: auto;
+	}
+
+	#up-indicator::before {
+		content: '';
+		display: block;
+		width: 14px;
+		height: 14px;
+		border-left: 2px solid rgba(255,255,255,0.8);
+		border-top: 2px solid rgba(255,255,255,0.8);
+		-webkit-transform: rotate(45deg) translateY(4px);
+		transform: rotate(45deg) translateY(4px);
 	}
 
 	body.is-article-visible:not(.is-intro-visible) #up-indicator {
@@ -1698,14 +1707,23 @@ input, select, textarea {
 		justify-content: center;
 		-webkit-align-items: center;
 		align-items: center;
-		color: #ffffff;
-		font-size: 1.5rem;
 		z-index: 10;
 		-webkit-animation: scrollBounce 1.6s ease-in-out infinite;
 		animation: scrollBounce 1.6s ease-in-out infinite;
 		pointer-events: auto;
 		-webkit-transition: opacity 0.5s ease;
 		transition: opacity 0.5s ease;
+	}
+
+	#scroll-indicator::before {
+		content: '';
+		display: block;
+		width: 14px;
+		height: 14px;
+		border-right: 2px solid rgba(255,255,255,0.8);
+		border-bottom: 2px solid rgba(255,255,255,0.8);
+		-webkit-transform: rotate(45deg) translateY(-4px);
+		transform: rotate(45deg) translateY(-4px);
 	}
 
 	body.is-article-visible #footer {

@@ -358,6 +358,26 @@
 
 			});
 
+		// Load daily word and reflection into Tidbits panel.
+			(function() {
+				Promise.all([
+					fetch('data/word-of-day.json').then(function(r) { return r.json(); }),
+					fetch('data/reflections.json').then(function(r) { return r.json(); })
+				]).then(function(results) {
+					var wordData    = results[0];
+					var reflections = results[1];
+					var word        = wordData.word;
+					var date        = wordData.date;
+					document.getElementById('tidbits-word').textContent = word;
+					var match = reflections.find(function(r) { return r.date === date; });
+					if (match && match.text) {
+						var el = document.getElementById('tidbits-reflection');
+						el.innerHTML = '';
+						el.textContent = match.text;
+					}
+				}).catch(function() {});
+			})();
+
 		// Events.
 			$body.on('click', function(event) {
 
