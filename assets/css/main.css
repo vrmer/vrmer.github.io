@@ -1680,6 +1680,13 @@ input, select, textarea {
 		transform: rotate(45deg) translateY(4px);
 	}
 
+	.tidbits-date {
+		font-size: 0.7rem;
+		opacity: 0.4;
+		letter-spacing: 0.15rem;
+		margin: -0.75rem 0 1rem 0;
+	}
+
 	body.is-article-visible:not(.is-intro-visible) #up-indicator {
 		display: -webkit-flex;
 		display: flex;

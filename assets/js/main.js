@@ -358,23 +358,49 @@
 
 			});
 
-		// Load daily word and reflection into Tidbits panel.
+		// Convert **bold** and *italic* markers to HTML.
+			var colors = {
+				orange: '#e8a87c',
+				blue:   '#7cb2e8'
+			};
+
+			function parseInline(text) {
+				return text
+					.replace(/\[(.+?)\]\{(.+?)\}/g, function(_, word, color) {
+						return '<span style="color:' + (colors[color] || color) + '">' + word + '</span>';
+					})
+					.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+					.replace(/\*(.+?)\*/g, '<em>$1</em>');
+			}
+
+		// Load word history and reflections into Tidbits panel.
 			(function() {
 				Promise.all([
-					fetch('data/word-of-day.json').then(function(r) { return r.json(); }),
+					fetch('data/words-history.json').then(function(r) { return r.json(); }),
 					fetch('data/reflections.json').then(function(r) { return r.json(); })
 				]).then(function(results) {
-					var wordData    = results[0];
+					var history     = results[0];
 					var reflections = results[1];
-					var word        = wordData.word;
-					var date        = wordData.date;
-					document.getElementById('tidbits-word').textContent = word;
-					var match = reflections.find(function(r) { return r.date === date; });
-					if (match && match.text) {
-						var el = document.getElementById('tidbits-reflection');
-						el.innerHTML = '';
-						el.textContent = match.text;
-					}
+					var container   = document.getElementById('tidbits-entries');
+					container.innerHTML = '';
+					history.forEach(function(entry, i) {
+						var wordEl = document.createElement('h3');
+						wordEl.textContent = entry.word;
+						var dateEl = document.createElement('p');
+						dateEl.className = 'tidbits-date';
+						dateEl.textContent = entry.date;
+						container.appendChild(wordEl);
+						container.appendChild(dateEl);
+						var match = reflections.find(function(r) { return r.date === entry.date; });
+						if (match && match.text) {
+							var reflEl = document.createElement('p');
+							reflEl.innerHTML = parseInline(match.text);
+							container.appendChild(reflEl);
+						}
+						if (i < history.length - 1) {
+							container.appendChild(document.createElement('hr'));
+						}
+					});
 				}).catch(function() {});
 			})();
 
