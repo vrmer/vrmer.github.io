@@ -13,16 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Pick random word and write JSON
+      - name: Pick random word, write JSON, and commit
         run: |
           WORD=$(shuf -n 1 data/words.txt)
           DATE=$(TZ="Europe/Budapest" date +%Y-%m-%d)
           echo "{\"word\": \"$WORD\", \"date\": \"$DATE\"}" > data/word-of-day.json
-
-      - name: Commit and push
-        run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/word-of-day.json
-          git commit -m "Daily word: $(python3 -c \"import json; print(json.load(open('data/word-of-day.json'))['word'])\")"
+          git commit -m "Daily word: $WORD"
           git push
