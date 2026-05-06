@@ -1140,9 +1140,12 @@ input, select, textarea {
 			-ms-transition-delay: 0.25s;
 			transition-delay: 0.25s;
 			background-image: linear-gradient(to top, rgba(19, 21, 25, 0.5), rgba(19, 21, 25, 0.5)), url("../../images/overlay.png");
-			background-size: auto, 256px 256px;
-			background-position: center, center;
-			background-repeat: no-repeat, repeat;
+			background-size: auto,
+ 256px 256px;
+			background-position: center,
+ center;
+			background-repeat: no-repeat,
+ repeat;
 			z-index: 2;
 		}
 
@@ -1648,7 +1651,64 @@ input, select, textarea {
 			text-transform: uppercase;
 		}
 
-		body.is-article-visible #footer {
+	/* Up indicator */
+
+	#up-indicator {
+		display: none;
+		position: fixed;
+		top: 2rem;
+		left: 0;
+		right: 0;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-align-items: center;
+		align-items: center;
+		color: #ffffff;
+		font-size: 1.5rem;
+		z-index: 10;
+		-webkit-animation: scrollBounce 1.6s ease-in-out infinite;
+		animation: scrollBounce 1.6s ease-in-out infinite;
+		pointer-events: auto;
+	}
+
+	body.is-article-visible:not(.is-intro-visible) #up-indicator {
+		display: -webkit-flex;
+		display: flex;
+	}
+
+/* Scroll indicator */
+
+	@-webkit-keyframes scrollBounce {
+		0%, 100% { -webkit-transform: translateY(0); transform: translateY(0); opacity: 0.6; }
+		50%       { -webkit-transform: translateY(8px); transform: translateY(8px); opacity: 1; }
+	}
+	@keyframes scrollBounce {
+		0%, 100% { transform: translateY(0); opacity: 0.6; }
+		50%       { transform: translateY(8px); opacity: 1; }
+	}
+
+	#scroll-indicator {
+		position: fixed;
+		bottom: 12%;
+		left: 0;
+		right: 0;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-align-items: center;
+		align-items: center;
+		color: #ffffff;
+		font-size: 1.5rem;
+		z-index: 10;
+		-webkit-animation: scrollBounce 1.6s ease-in-out infinite;
+		animation: scrollBounce 1.6s ease-in-out infinite;
+		pointer-events: auto;
+		-webkit-transition: opacity 0.5s ease;
+		transition: opacity 0.5s ease;
+	}
+
+	body.is-article-visible #footer {
 			-moz-transform: scale(0.95);
 			-webkit-transform: scale(0.95);
 			-ms-transform: scale(0.95);

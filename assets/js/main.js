@@ -27,6 +27,63 @@
 	// Play initial animations on page load.
 		$body.removeClass('is-preload');
 
+	// Track active article for up-indicator visibility.
+		function updateUpIndicator() {
+			var h = location.hash;
+			if (h === '#intro' || h === '' || h === '#') {
+				$body.addClass('is-intro-visible');
+			} else {
+				$body.removeClass('is-intro-visible');
+			}
+		}
+		$window.on('hashchange', updateUpIndicator);
+		updateUpIndicator();
+
+	// Scroll through panels in order.
+		var navOrder = ['intro', 'work', 'contact', 'tidbits'];
+		var scrollLocked = false;
+
+		$window.on('wheel', function(event) {
+			if (scrollLocked) return;
+
+			var delta = event.originalEvent.deltaY;
+			if (Math.abs(delta) < 30) return;
+
+			if (!$body.hasClass('is-article-visible')) {
+				if (delta > 0) {
+					scrollLocked = true;
+					setTimeout(function() { scrollLocked = false; }, 1200);
+					location.hash = '#' + navOrder[0];
+				}
+			} else {
+				var current = $main_articles.filter('.active').attr('id');
+				var idx = navOrder.indexOf(current);
+				if (idx === -1) return;
+
+				var scrollTop   = $window.scrollTop();
+				var fitsInView  = $(document).height() <= $window.height() + 10;
+				var atTop       = scrollTop <= 5 || fitsInView;
+				var atBottom    = scrollTop + $window.height() >= $(document).height() - 5 || fitsInView;
+
+				if (delta > 0 && atBottom) {
+					if (idx < navOrder.length - 1) {
+						scrollLocked = true;
+						setTimeout(function() { scrollLocked = false; }, 1200);
+						$window.scrollTop(0);
+						location.hash = '#' + navOrder[idx + 1];
+					}
+				} else if (delta < 0 && atTop) {
+					scrollLocked = true;
+					setTimeout(function() { scrollLocked = false; }, 1200);
+					$window.scrollTop(0);
+					if (idx > 0)
+						location.hash = '#' + navOrder[idx - 1];
+					else
+						$main._hide(true);
+				}
+			}
+		});
+
 	// Fix: Flexbox min-height bug on IE.
 		if (browser.name == 'ie') {
 

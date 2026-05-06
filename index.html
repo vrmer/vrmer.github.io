@@ -34,11 +34,21 @@
 							<ul>
 								<li><a href="#intro">Intro</a></li>
 								<li><a href="#work">Work</a></li>
-								<li><a href="#about">About</a></li>
 								<li><a href="#contact">Contact</a></li>
+								<li><a href="#tidbits">Tidbits</a></li>
 							</ul>
 						</nav>
 					</header>
+
+				<!-- Up indicator -->
+					<div id="up-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','work','contact','tidbits'];var idx=order.indexOf(h);window.scrollTo(0,0);if(idx>0){location.hash='#'+order[idx-1];}else{location.hash='';}})(event);" style="cursor:pointer;">
+						<span class="icon fa-solid fa-chevron-up"></span>
+					</div>
+
+				<!-- Scroll indicator -->
+					<div id="scroll-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','work','contact','tidbits'];var idx=order.indexOf(h);if(idx===-1){location.hash='#intro';}else if(idx<order.length-1){window.scrollTo(0,0);location.hash='#'+order[idx+1];};})(event);" style="cursor:pointer;">
+						<span class="icon fa-solid fa-chevron-down"></span>
+					</div>
 
 				<!-- Main -->
 					<div id="main">
@@ -61,6 +71,8 @@
 									In the following years, I aim to build on my existing knowledge and develop my skills to fulfill my goals,
 									especially with respect to Uralic languages that receive little attention in current NLP research.
 								</p>
+								<p>I am a PhD Fellow at <a href="https://www.en.aau.dk">Aalborg University</a> in Copenhagen, Denmark, working within the <a href="https://vbn.aau.dk/da/projects/multilingual-modelling-for-resource-poor-languages">Multilingual Modelling for Resource-Poor Languages</a> project under the supervision of <strong>Johannes Bjerva</strong>.</p>
+								<p>My academic background spans Linguistics (BA, University of Cambridge) and Natural Language Processing (MA Human Language Technology, Vrije Universiteit Amsterdam). I am particularly interested in Uralic languages and data-efficient cross-lingual transfer methods.</p>
 							</article>
 
 						<!-- Work -->
@@ -107,11 +119,10 @@
 								<p>Group project at Vrije Universiteit Amsterdam as part of the larger project <a href="https://chroniclingnovelty.com">Chronicling Novelty</a>.</p>
 							</article>
 
-						<!-- About -->
-							<article id="about">
-								<h2 class="major">About</h2>
-								<p>I am a PhD Fellow at <a href="https://www.en.aau.dk">Aalborg University</a> in Copenhagen, Denmark, working within the <a href="https://vbn.aau.dk/da/projects/multilingual-modelling-for-resource-poor-languages">Multilingual Modelling for Resource-Poor Languages</a> project under the supervision of <strong>Johannes Bjerva</strong>.</p>
-								<p>My academic background spans Linguistics (BA, University of Cambridge) and Natural Language Processing (MA Human Language Technology, Vrije Universiteit Amsterdam). I am particularly interested in Uralic languages and data-efficient cross-lingual transfer methods.</p>
+						<!-- Tidbits -->
+							<article id="tidbits">
+								<h2 class="major">Tidbits</h2>
+								<p>Coming soon.</p>
 							</article>
 
 						<!-- Contact -->
