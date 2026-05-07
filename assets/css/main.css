@@ -1,5 +1,5 @@
 @import url(fontawesome-all.min.css);
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,400italic,600italic,300,400,600");
 
 /*
 	Dimension by HTML5 UP
@@ -142,9 +142,12 @@ input, select, textarea {
 	body, input, select, textarea {
 		color: #ffffff;
 		font-family: "Source Sans Pro", sans-serif;
-		font-weight: 300;
+		font-weight: 400;
 		font-size: 1rem;
 		line-height: 1.65;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		text-rendering: optimizeLegibility;
 	}
 
 	a {
@@ -1254,10 +1257,10 @@ input, select, textarea {
 		-webkit-transition: -webkit-transform 0.325s ease-in-out, -webkit-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
 		-ms-transition: -ms-transform 0.325s ease-in-out, -ms-filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
 		transition: transform 0.325s ease-in-out, filter 0.325s ease-in-out, opacity 0.325s ease-in-out;
-		background-image: -moz-radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
-		background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
-		background-image: -ms-radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
-		background-image: radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
+		background-image: -moz-radial-gradient(rgba(0, 0, 0, 0.45) 25%, rgba(0, 0, 0, 0) 70%);
+		background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0.45) 25%, rgba(0, 0, 0, 0) 70%);
+		background-image: -ms-radial-gradient(rgba(0, 0, 0, 0.45) 25%, rgba(0, 0, 0, 0) 70%);
+		background-image: radial-gradient(rgba(0, 0, 0, 0.45) 25%, rgba(0, 0, 0, 0) 70%);
 		max-width: 100%;
 		text-align: center;
 	}
@@ -1731,6 +1734,13 @@ input, select, textarea {
 		border-bottom: 2px solid rgba(255,255,255,0.8);
 		-webkit-transform: rotate(45deg) translateY(-4px);
 		transform: rotate(45deg) translateY(-4px);
+	}
+
+	body.is-last-panel #scroll-indicator {
+		opacity: 0;
+		pointer-events: none;
+		-webkit-animation: none;
+		animation: none;
 	}
 
 	body.is-article-visible #footer {

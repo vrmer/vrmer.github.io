@@ -43,6 +43,18 @@
 		var navOrder = ['intro', 'work', 'contact', 'words'];
 		var scrollLocked = false;
 
+	// Hide scroll indicator on the last panel.
+		function updateScrollIndicator() {
+			var h = location.hash.replace('#', '');
+			if (h === navOrder[navOrder.length - 1]) {
+				$body.addClass('is-last-panel');
+			} else {
+				$body.removeClass('is-last-panel');
+			}
+		}
+		$window.on('hashchange', updateScrollIndicator);
+		updateScrollIndicator();
+
 		$window.on('wheel', function(event) {
 			if (scrollLocked) return;
 
