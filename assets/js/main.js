@@ -43,17 +43,19 @@
 		var navOrder = ['intro', 'work', 'contact', 'words'];
 		var scrollLocked = false;
 
-	// Hide scroll indicator on the last panel.
-		function updateScrollIndicator() {
-			var h = location.hash.replace('#', '');
-			if (h === navOrder[navOrder.length - 1]) {
-				$body.addClass('is-last-panel');
-			} else {
-				$body.removeClass('is-last-panel');
+	// Hide scroll indicator on the last panel by watching the article's active class.
+		(function() {
+			var lastArticle = document.getElementById(navOrder[navOrder.length - 1]);
+			function syncIndicator() {
+				if (lastArticle.classList.contains('active')) {
+					$body.addClass('is-last-panel');
+				} else {
+					$body.removeClass('is-last-panel');
+				}
 			}
-		}
-		$window.on('hashchange', updateScrollIndicator);
-		updateScrollIndicator();
+			new MutationObserver(syncIndicator).observe(lastArticle, { attributes: true, attributeFilter: ['class'] });
+			syncIndicator();
+		})();
 
 		$window.on('wheel', function(event) {
 			if (scrollLocked) return;
