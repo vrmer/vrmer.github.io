@@ -40,8 +40,9 @@
 		updateUpIndicator();
 
 	// Scroll through panels in order.
-		var navOrder = ['intro', 'work', 'contact', 'words'];
+		var navOrder = ['intro', 'research', 'contact', 'words'];
 		var scrollLocked = false;
+		var atBoundary = false;
 
 	// Hide scroll indicator on the last panel by watching the article's active class.
 		(function() {
@@ -55,6 +56,23 @@
 			}
 			new MutationObserver(syncIndicator).observe(lastArticle, { attributes: true, attributeFilter: ['class'] });
 			syncIndicator();
+		})();
+
+	// Collapse abstracts when navigating away from research panel.
+		(function() {
+			var researchArticle = document.getElementById('research');
+			new MutationObserver(function() {
+				if (!researchArticle.classList.contains('active')) {
+					['abs1', 'abs2'].forEach(function(id) {
+						var more = document.getElementById(id + '-more');
+						var ellipsis = document.getElementById(id + '-ellipsis');
+						var btn = document.getElementById(id + '-btn');
+						if (more) more.style.display = 'none';
+						if (ellipsis) ellipsis.style.display = 'inline';
+						if (btn) btn.textContent = 'Read more';
+					});
+				}
+			}).observe(researchArticle, { attributes: true, attributeFilter: ['class'] });
 		})();
 
 		$window.on('wheel', function(event) {
@@ -81,19 +99,31 @@
 
 				if (delta > 0 && atBottom) {
 					if (idx < navOrder.length - 1) {
+						if (fitsInView || atBoundary) {
+							atBoundary = false;
+							scrollLocked = true;
+							setTimeout(function() { scrollLocked = false; }, 1200);
+							$window.scrollTop(0);
+							location.hash = '#' + navOrder[idx + 1];
+						} else {
+							atBoundary = true;
+						}
+					}
+				} else if (delta < 0 && atTop) {
+					if (fitsInView || atBoundary) {
+						atBoundary = false;
 						scrollLocked = true;
 						setTimeout(function() { scrollLocked = false; }, 1200);
 						$window.scrollTop(0);
-						location.hash = '#' + navOrder[idx + 1];
+						if (idx > 0)
+							location.hash = '#' + navOrder[idx - 1];
+						else
+							$main._hide(true);
+					} else {
+						atBoundary = true;
 					}
-				} else if (delta < 0 && atTop) {
-					scrollLocked = true;
-					setTimeout(function() { scrollLocked = false; }, 1200);
-					$window.scrollTop(0);
-					if (idx > 0)
-						location.hash = '#' + navOrder[idx - 1];
-					else
-						$main._hide(true);
+				} else {
+					atBoundary = false;
 				}
 			}
 		});
@@ -400,21 +430,41 @@
 					history.forEach(function(entry, i) {
 						var wordEl = document.createElement('h3');
 						wordEl.textContent = entry.word;
-						var dateEl = document.createElement('p');
+						var dateEl = document.createElement('span');
 						dateEl.className = 'words-date';
 						dateEl.textContent = entry.date;
-						container.appendChild(wordEl);
-						container.appendChild(dateEl);
+						var headerEl = document.createElement('div');
+						headerEl.style.cssText = 'display:flex;justify-content:space-between;align-items:baseline;';
+						headerEl.appendChild(wordEl);
+						headerEl.appendChild(dateEl);
+						container.appendChild(headerEl);
 						var match = reflections.find(function(r) { return r.date === entry.date; });
 						if (match && match.text) {
 							var reflEl = document.createElement('p');
+							reflEl.className = 'words-reflection';
 							reflEl.innerHTML = parseInline(match.text);
+							reflEl.style.display = 'none';
 							container.appendChild(reflEl);
+							var toggle = (function(el) {
+								return function(e) {
+									e.stopPropagation();
+									el.style.display = el.style.display === 'none' ? '' : 'none';
+								};
+							})(reflEl);
+							headerEl.style.cursor = 'pointer';
+							headerEl.addEventListener('click', toggle);
 						}
-						if (i < history.length - 1) {
-							container.appendChild(document.createElement('hr'));
+						});
+				var wordsArticle = document.getElementById('words');
+					new MutationObserver(function() {
+						if (!wordsArticle.classList.contains('active')) {
+							setTimeout(function() {
+								container.querySelectorAll('.words-reflection').forEach(function(el) {
+									el.style.display = 'none';
+								});
+							}, 400);
 						}
-					});
+					}).observe(wordsArticle, { attributes: true, attributeFilter: ['class'] });
 				}).catch(function() {});
 			})();
 

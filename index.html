@@ -7,10 +7,12 @@
 <html>
 	<head>
 		<title>Marcell Fekete</title>
+		<link rel="icon" type="image/jpeg" href="images/marcell_funny.JPG" />
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -28,12 +30,18 @@
 								<h1>Marcell Fekete</h1>
 								<p>PhD Fellow in Computational Linguistics &bull; Aalborg University (Copenhagen)<br />
 								Comparing the linguistic competence of language models and humans</p>
+								<ul class="icons">
+									<li><a href="https://github.com/vrmer" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="https://twitter.com/v4rmer" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://www.linkedin.com/in/marcellfekete/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="mailto:mrfe@cs.aau.dk" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
 							</div>
 						</div>
 						<nav>
 							<ul>
 								<li><a href="#intro">Intro</a></li>
-								<li><a href="#work">Work</a></li>
+								<li><a href="#research">Research</a></li>
 								<li><a href="#contact">Contact</a></li>
 								<li><a href="#words">Words</a></li>
 							</ul>
@@ -41,11 +49,11 @@
 					</header>
 
 				<!-- Up indicator -->
-					<div id="up-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','work','contact','words'];var idx=order.indexOf(h);window.scrollTo(0,0);if(idx>0){location.hash='#'+order[idx-1];}else{location.hash='';}})(event);" style="cursor:pointer;">
+					<div id="up-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','research','contact','words'];var idx=order.indexOf(h);window.scrollTo(0,0);if(idx>0){location.hash='#'+order[idx-1];}else{location.hash='';}})(event);" style="cursor:pointer;">
 					</div>
 
 				<!-- Scroll indicator -->
-					<div id="scroll-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','work','contact','words'];var idx=order.indexOf(h);if(idx===-1){location.hash='#intro';}else if(idx<order.length-1){window.scrollTo(0,0);location.hash='#'+order[idx+1];};})(event);" style="cursor:pointer;">
+					<div id="scroll-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','research','contact','words'];var idx=order.indexOf(h);if(idx===-1){location.hash='#intro';}else if(idx<order.length-1){window.scrollTo(0,0);location.hash='#'+order[idx+1];};})(event);" style="cursor:pointer;">
 					</div>
 
 				<!-- Main -->
@@ -74,12 +82,22 @@
 							</article>
 
 						<!-- Work -->
-							<article id="work">
-								<h2 class="major">Work</h2>
+							<article id="research">
+								<h2 class="major">Research</h2>
 
-								<h3>Test</h3>
-								<!-- <span class="image main"><img src="image_path" alt="" /></span> -->
-								<p>Test</p>
+								<div style="display:flex;justify-content:space-between;align-items:center;font-size:0.7rem;letter-spacing:0.15rem;margin-top:-1rem;margin-bottom:2rem;">
+									<a href="https://scholar.google.com/citations?user=oWcJFGcAAAAJ&hl=en"><i class="ai ai-google-scholar"></i> Google Scholar</a>
+									<a href="https://aclanthology.org/people/marcell-fekete/"><img src="https://aclanthology.org/images/acl-logo.svg" alt="ACL" style="height:1em;vertical-align:middle;margin-right:0.3em;" /> ACL Anthology</a>
+									<a href="https://orcid.org/0009-0007-5025-7866"><i class="ai ai-orcid"></i> ORCID</a>
+								</div>
+
+								<h3 style="display:flex;justify-content:space-between;align-items:baseline;"><span><a href="https://aclanthology.org/2025.acl-short.19/">Limited-Resource Adapters Are Regularizers, Not Linguists</a></span><span style="font-size:0.7rem;letter-spacing:0.15rem;font-weight:600;">Short Paper, ACL 2025 (Vienna, Austria)</span></h3>
+								<div style="font-size:0.7rem;letter-spacing:0.15rem;margin-top:0.25rem;margin-bottom:1rem;text-transform:none;"><strong style="font-weight:700;">Marcell Fekete</strong> · Nathaniel Romney Robinson · Ernests Lavrinovics · Djeride Jean-Baptiste · Raj Dabre · Johannes Bjerva · Heather Lent</div>
+								<p>Cross-lingual transfer from related high-resource languages is a well-established strategy to enhance low-resource language technologies. Prior work has shown that adapters show promise for, e.g., improving<span id="abs1-more" style="display:none;"> low-resource machine translation (MT). In this work, we investigate an adapter souping method combined with cross-attention fine-tuning of a pre-trained MT model to leverage language transfer for three low-resource Creole languages, which exhibit relatedness to different language groups across distinct linguistic dimensions. Our approach improves performance substantially over baselines. However, we find that linguistic relatedness—or even a lack thereof—does not covary meaningfully with adapter performance. Surprisingly, our cross-attention fine-tuning approach appears equally effective with randomly initialized adapters, implying that the benefit of adapters in this setting lies in parameter regularization, and not in meaningful information transfer. We provide analysis supporting this regularization hypothesis. Our findings underscore the reality that neural language processing involves many success factors, and that not all neural methods leverage linguistic knowledge in intuitive ways.</span><span id="abs1-ellipsis">…</span><br /><a href="javascript:void(0)" id="abs1-btn" onclick="(function(){var m=document.getElementById('abs1-more'),e=document.getElementById('abs1-ellipsis'),b=document.getElementById('abs1-btn');var open=m.style.display!=='none';m.style.display=open?'none':'inline';e.style.display=open?'inline':'none';b.textContent=open?'Read more':'Show less';})();" style="font-size:0.7rem;letter-spacing:0.15rem;">Read more</a></p>
+
+								<h3 style="display:flex;justify-content:space-between;align-items:baseline;"><span><a href="https://aclanthology.org/2025.findings-naacl.49/">Linguistically Grounded Analysis of Language Models using Shapley Values</a></span><span style="font-size:0.7rem;letter-spacing:0.15rem;font-weight:600;">Long Paper, <br /> NAACL 2025 (Albuquerque, <br /> New Mexico)</span></h3>
+								<div style="font-size:0.7rem;letter-spacing:0.15rem;margin-top:-0.75rem;margin-bottom:1rem;text-transform:none;"><strong style="font-weight:700;">Marcell Fekete</strong> · Johannes Bjerva</div>
+								<p>Understanding how linguistic knowledge is encoded in language models is crucial for improving their generalisation capabilities. In this paper, we investigate the processing of morphosyntactic phenomena, by leveraging<span id="abs2-more" style="display:none;"> a recently proposed method for probing language models via Shapley Head Values (SHVs). Using the English language BLiMP dataset, we test our approach on two widely used models, BERT and RoBERTa, and compare how linguistic constructions such as anaphor agreement and filler-gap dependencies are handled. Through quantitative pruning and qualitative clustering analysis, we demonstrate that attention heads responsible for processing related linguistic phenomena cluster together. Our results show that SHV-based attributions reveal distinct patterns across both models, providing insights into how language models organize and process linguistic information. These findings support the hypothesis that language models learn subnetworks corresponding to linguistic theory, with potential implications for cross-linguistic model analysis and interpretability in Natural Language Processing (NLP).</span><span id="abs2-ellipsis">…</span><br /><a href="javascript:void(0)" id="abs2-btn" onclick="(function(){var m=document.getElementById('abs2-more'),e=document.getElementById('abs2-ellipsis'),b=document.getElementById('abs2-btn');var open=m.style.display!=='none';m.style.display=open?'none':'inline';e.style.display=open?'inline':'none';b.textContent=open?'Read more':'Show less';})();" style="font-size:0.7rem;letter-spacing:0.15rem;">Read more</a></p>
 
 								<!-- if I want a divider -->
 								<!-- <hr /> -->
