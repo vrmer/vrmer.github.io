@@ -29,7 +29,7 @@
 							<div class="inner">
 								<h1>Marcell Fekete</h1>
 								<p>PhD Fellow in Computational Linguistics &bull; Aalborg University (Copenhagen)<br />
-								Comparing the linguistic competence of language models and humans</p>
+								Investigating the linguistic competence of language models</p>
 								<ul class="icons">
 									<li><a href="https://github.com/vrmer" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
 									<li><a href="https://twitter.com/v4rmer" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
@@ -42,18 +42,18 @@
 							<ul>
 								<li><a href="#intro">Intro</a></li>
 								<li><a href="#research">Research</a></li>
-								<li><a href="#contact">Contact</a></li>
+								<li><a href="#cv">My CV</a></li>
 								<li><a href="#words">Words</a></li>
 							</ul>
 						</nav>
 					</header>
 
 				<!-- Up indicator -->
-					<div id="up-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','research','contact','words'];var idx=order.indexOf(h);window.scrollTo(0,0);if(idx>0){location.hash='#'+order[idx-1];}else{location.hash='';}})(event);" style="cursor:pointer;">
+					<div id="up-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','research','cv','words'];var idx=order.indexOf(h);window.scrollTo(0,0);if(idx>0){location.hash='#'+order[idx-1];}else{location.hash='';}})(event);" style="cursor:pointer;">
 					</div>
 
 				<!-- Scroll indicator -->
-					<div id="scroll-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','research','contact','words'];var idx=order.indexOf(h);if(idx===-1){location.hash='#intro';}else if(idx<order.length-1){window.scrollTo(0,0);location.hash='#'+order[idx+1];};})(event);" style="cursor:pointer;">
+					<div id="scroll-indicator" onclick="(function(e){e.stopPropagation();var h=location.hash.replace('#','');var order=['intro','research','cv','words'];var idx=order.indexOf(h);if(idx===-1){location.hash='#intro';}else if(idx<order.length-1){window.scrollTo(0,0);location.hash='#'+order[idx+1];};})(event);" style="cursor:pointer;">
 					</div>
 
 				<!-- Main -->
@@ -64,21 +64,17 @@
 								<h2 class="major">Intro</h2>
 								<span class="image main"><img src="images/marcell_long.jpg" alt="Marcell Fekete" /></span>
 								<p>
-									My main motivation is to create better performing NLP tools for diverse languages with a special focus on data-poor settings.
-									In researching data-efficient methods such as language adapters, I integrate expertise from my background in Linguistics
-									(BA Linguistics, University of Cambridge), NLP and deep learning (MA Human Language Technology, Vrije Universiteit Amsterdam).
+									My name is <strong>Marcell Fekete</strong>, and I am a PhD fellow in Computational Linguistics at Aalborg University (Copenhagen), supervised by Prof. Johannes Bjerva. My research interests include multilinguality and the cognitive plausibility of language modelling.
+								</p>
+								<p><a href="javascript:void(0)" id="intro-rant-btn" onclick="(function(){var c=document.getElementById('intro-rant');var b=document.getElementById('intro-rant-btn');var open=c.style.display!=='none';c.style.display=open?'none':'';b.innerHTML=open?'<span style=&quot;color:#e8a87c&quot;>⚠</span> Warning! Linguistics rant incoming <span style=&quot;color:#e8a87c&quot;>⚠</span>':'Hide rant';})();" style="font-size:0.7rem;letter-spacing:0.15rem;"><span style="color:#e8a87c">⚠</span> Warning! Linguistics rant incoming! <span style="color:#e8a87c">⚠</span></a></p>
+								<div id="intro-rant" style="display:none;">
+								<p>
+									Language is probably our most <em>human</em> skill. With it, we can convey ideas with unique precision. Yet, language is much more than just a mere communicative device. We can use it to present affection or dislike. We show or hide our identities, adapting to our context and our interlocutors. It is a vehicle for self-expression, and of art: of poetry, prose, drama, films and music. It shapes culture and it is shaped by culture. We learn it from our parents, our guardians.
 								</p>
 								<p>
-									I started my PhD in September 2022 with <strong>Johannes Bjerva</strong> at Aalborg University in Copenhagen, Denmark.
-									Already in my first year, my extended abstract <a href="https://sigtyp.github.io/workshops/2023/sigtyp/papers/16_gradual_language_model_adaptat.pdf">Gradual Language Model Adaptation Using Fine-Grained Typology</a>
-									was accepted to SIGTYP at EACL 2023 in Dubrovnik.
+									However, in recent years, for the first time ever, we encountered something that seemed to wield language as its truly fluent user: language models. Language models learn language in truly different ways to how we humans do it, without truly contextualising in culture and the real world.
 								</p>
-								<p>
-									In the following years, I aim to build on my existing knowledge and develop my skills to fulfill my goals,
-									especially with respect to Uralic languages that receive little attention in current NLP research.
-								</p>
-								<p>I am a PhD Fellow at <a href="https://www.en.aau.dk">Aalborg University</a> in Copenhagen, Denmark, working within the <a href="https://vbn.aau.dk/da/projects/multilingual-modelling-for-resource-poor-languages">Multilingual Modelling for Resource-Poor Languages</a> project under the supervision of <strong>Johannes Bjerva</strong>.</p>
-								<p>My academic background spans Linguistics (BA, University of Cambridge) and Natural Language Processing (MA Human Language Technology, Vrije Universiteit Amsterdam). I am particularly interested in Uralic languages and data-efficient cross-lingual transfer methods.</p>
+								</div>
 							</article>
 
 						<!-- Work -->
@@ -99,6 +95,10 @@
 								<div style="font-size:0.7rem;letter-spacing:0.15rem;margin-top:-0.75rem;margin-bottom:1rem;text-transform:none;"><strong style="font-weight:700;">Marcell Fekete</strong> · Johannes Bjerva</div>
 								<p>Understanding how linguistic knowledge is encoded in language models is crucial for improving their generalisation capabilities. In this paper, we investigate the processing of morphosyntactic phenomena, by leveraging<span id="abs2-more" style="display:none;"> a recently proposed method for probing language models via Shapley Head Values (SHVs). Using the English language BLiMP dataset, we test our approach on two widely used models, BERT and RoBERTa, and compare how linguistic constructions such as anaphor agreement and filler-gap dependencies are handled. Through quantitative pruning and qualitative clustering analysis, we demonstrate that attention heads responsible for processing related linguistic phenomena cluster together. Our results show that SHV-based attributions reveal distinct patterns across both models, providing insights into how language models organize and process linguistic information. These findings support the hypothesis that language models learn subnetworks corresponding to linguistic theory, with potential implications for cross-linguistic model analysis and interpretability in Natural Language Processing (NLP).</span><span id="abs2-ellipsis">…</span><br /><a href="javascript:void(0)" id="abs2-btn" onclick="(function(){var m=document.getElementById('abs2-more'),e=document.getElementById('abs2-ellipsis'),b=document.getElementById('abs2-btn');var open=m.style.display!=='none';m.style.display=open?'none':'inline';e.style.display=open?'inline':'none';b.textContent=open?'Read more':'Show less';})();" style="font-size:0.7rem;letter-spacing:0.15rem;">Read more</a></p>
 
+								<h3 style="display:flex;justify-content:space-between;align-items:baseline;"><span><a href="https://aclanthology.org/2024.tacl-1.53/">CreoleVal: Multilingual Multitask Benchmarks for Creoles</a></span><span style="font-size:0.7rem;letter-spacing:0.15rem;font-weight:600;">TACL 2024</span></h3>
+								<div style="font-size:0.7rem;letter-spacing:0.15rem;margin-top:0.25rem;margin-bottom:1rem;text-transform:none;">Heather Lent · Kushal Tatariya · Raj Dabre · Yiyi Chen · <strong style="font-weight:700;">Marcell Fekete</strong> · Esther Ploeger · Li Zhou · Ruth-Ann Armstrong · Abee Eijansantos · Catriona Malau · Hans Erik Heje · Ernests Lavrinovics · Diptesh Kanojia · Paul Belony · Marcel Bollmann · Loïc Grobol · Miryam de Lhoneux · Daniel Hershcovich · Michel DeGraff · Anders Søgaard · Johannes Bjerva</div>
+								<p>Creoles represent an under-explored and marginalized group of languages, with few available resources for NLP research. While the genealogical ties between Creoles and a number of highly resourced languages imply a significant potential for transfer learning,<span id="abs3-more" style="display:none;"> this potential is hampered due to this lack of annotated data. In this work we present CreoleVal, a collection of benchmark datasets spanning 8 different NLP tasks, covering up to 28 Creole languages; it is an aggregate of novel development datasets for reading comprehension, relation classification, and machine translation for Creoles, in addition to a practical gateway to a handful of preexisting benchmarks. For each benchmark, we conduct baseline experiments in a zero-shot setting in order to further ascertain the capabilities and limitations of transfer learning for Creoles. Ultimately, we see CreoleVal as an opportunity to empower research on Creoles in NLP and computational linguistics, and in general, a step towards more equitable language technology around the globe.</span><span id="abs3-ellipsis">…</span><br /><a href="javascript:void(0)" id="abs3-btn" onclick="(function(){var m=document.getElementById('abs3-more'),e=document.getElementById('abs3-ellipsis'),b=document.getElementById('abs3-btn');var open=m.style.display!=='none';m.style.display=open?'none':'inline';e.style.display=open?'inline':'none';b.textContent=open?'Read more':'Show less';})();" style="font-size:0.7rem;letter-spacing:0.15rem;">Read more</a></p>
+
 								<!-- if I want a divider -->
 								<!-- <hr /> -->
 
@@ -114,16 +114,10 @@
 								<div id="words-entries"></div>
 							</article>
 
-						<!-- Contact -->
-							<article id="contact">
-								<h2 class="major">Contact</h2>
-								<ul class="icons">
-									<li><a href="https://twitter.com/v4rmer" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="https://github.com/vrmer" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-									<li><a href="https://www.linkedin.com/in/marcellfekete/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-									<li><a href="mailto:mrfe@cs.aau.dk" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-								</ul>
-								<p>Feel free to reach out via email at <a href="mailto:mrfe@cs.aau.dk">mrfe@cs.aau.dk</a> or connect on any of the platforms above.</p>
+						<!-- CV -->
+							<article id="cv">
+								<h2 class="major">My CV</h2>
+								<p>My CV will be available here soon.</p>
 							</article>
 
 					</div>

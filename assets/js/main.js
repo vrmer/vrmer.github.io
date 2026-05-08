@@ -40,7 +40,7 @@
 		updateUpIndicator();
 
 	// Scroll through panels in order.
-		var navOrder = ['intro', 'research', 'contact', 'words'];
+		var navOrder = ['intro', 'research', 'cv', 'words'];
 		var scrollLocked = false;
 		var atBoundary = false;
 
@@ -75,19 +75,36 @@
 			}).observe(researchArticle, { attributes: true, attributeFilter: ['class'] });
 		})();
 
+	// Collapse rant when navigating away from intro panel.
+		(function() {
+			var introArticle = document.getElementById('intro');
+			new MutationObserver(function() {
+				if (!introArticle.classList.contains('active')) {
+					setTimeout(function() {
+						var rant = document.getElementById('intro-rant');
+						var btn = document.getElementById('intro-rant-btn');
+						if (rant) rant.style.display = 'none';
+						if (btn) btn.innerHTML = '<span style="color:#e8a87c">⚠</span> Warning! Linguistics rant incoming <span style="color:#e8a87c">⚠</span>';
+					}, 400);
+				}
+			}).observe(introArticle, { attributes: true, attributeFilter: ['class'] });
+		})();
+
 		$window.on('wheel', function(event) {
 			if (scrollLocked) return;
 
 			var delta = event.originalEvent.deltaY;
-			if (Math.abs(delta) < 30) return;
 
 			if (!$body.hasClass('is-article-visible')) {
+				if (Math.abs(delta) < 30) return;
 				if (delta > 0) {
 					scrollLocked = true;
 					setTimeout(function() { scrollLocked = false; }, 1200);
 					location.hash = '#' + navOrder[0];
 				}
 			} else {
+				if (Math.abs(delta) < 5) return;
+
 				var current = $main_articles.filter('.active').attr('id');
 				var idx = navOrder.indexOf(current);
 				if (idx === -1) return;
@@ -103,10 +120,11 @@
 							atBoundary = false;
 							scrollLocked = true;
 							setTimeout(function() { scrollLocked = false; }, 1200);
-							$window.scrollTop(0);
 							location.hash = '#' + navOrder[idx + 1];
 						} else {
 							atBoundary = true;
+							scrollLocked = true;
+							setTimeout(function() { scrollLocked = false; }, 500);
 						}
 					}
 				} else if (delta < 0 && atTop) {
@@ -114,13 +132,14 @@
 						atBoundary = false;
 						scrollLocked = true;
 						setTimeout(function() { scrollLocked = false; }, 1200);
-						$window.scrollTop(0);
 						if (idx > 0)
 							location.hash = '#' + navOrder[idx - 1];
 						else
 							$main._hide(true);
 					} else {
 						atBoundary = true;
+						scrollLocked = true;
+						setTimeout(function() { scrollLocked = false; }, 500);
 					}
 				} else {
 					atBoundary = false;
@@ -229,6 +248,9 @@
 								// Hide current article.
 									$currentArticle.hide();
 
+								// Reset scroll while nothing is visible.
+									$window.scrollTop(0);
+
 								// Show article.
 									$article.show();
 
@@ -239,7 +261,6 @@
 
 										// Window stuff.
 											$window
-												.scrollTop(0)
 												.triggerHandler('resize.flexbox-fix');
 
 										// Unlock.
