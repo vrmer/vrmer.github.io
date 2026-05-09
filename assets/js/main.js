@@ -92,6 +92,23 @@
 			}).observe(introArticle, { attributes: true, attributeFilter: ['class'] });
 		})();
 
+	// Re-expand collapsed CV sections when navigating away from the CV panel.
+		(function() {
+			var cvArticle = document.getElementById('cv');
+			new MutationObserver(function() {
+				if (!cvArticle.classList.contains('active')) {
+					setTimeout(function() {
+						[['cv-exp', 'cv-exp-ch'], ['cv-edu', 'cv-edu-ch'], ['cv-grants', 'cv-grants-ch'], ['cv-diss', 'cv-diss-ch']].forEach(function(pair) {
+							var section = document.getElementById(pair[0]);
+							var chevron = document.getElementById(pair[1]);
+							if (section) section.style.display = '';
+							if (chevron) chevron.textContent = '▾';
+						});
+					}, 400);
+				}
+			}).observe(cvArticle, { attributes: true, attributeFilter: ['class'] });
+		})();
+
 		$window.on('wheel', function(event) {
 			if (scrollLocked) return;
 
