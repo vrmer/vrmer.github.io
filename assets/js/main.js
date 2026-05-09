@@ -43,6 +43,8 @@
 		var navOrder = ['intro', 'research', 'cv', 'words'];
 		var scrollLocked = false;
 		var atBoundary = false;
+		var bottomBoundary = false;
+		var bottomBoundaryTimer = null;
 
 	// Hide scroll indicator on the last panel by watching the article's active class.
 		(function() {
@@ -112,26 +114,54 @@
 				var scrollTop   = $window.scrollTop();
 				var fitsInView  = $(document).height() <= $window.height() + 10;
 				var atTop       = scrollTop <= 5 || fitsInView;
-				var atBottom    = scrollTop + $window.height() >= $(document).height() - 5 || fitsInView;
+				var $activeArticle = $main_articles.filter('.active');
+				var articleBottom = $activeArticle.length ? $activeArticle.offset().top + $activeArticle.outerHeight(true) : $(document).height();
+				var atBottom    = scrollTop + $window.height() >= articleBottom - 5 || fitsInView;
 
-				if (delta > 0 && atBottom) {
+				if (delta > 0) {
 					if (idx < navOrder.length - 1) {
-						if (fitsInView || atBoundary) {
+						if (fitsInView) {
+							// Short panel: navigate on first downward scroll
 							atBoundary = false;
+							bottomBoundary = false;
+							clearTimeout(bottomBoundaryTimer);
+							bottomBoundaryTimer = null;
 							scrollLocked = true;
-							setTimeout(function() { scrollLocked = false; }, 1200);
+							setTimeout(function() { scrollLocked = false; }, 600);
 							location.hash = '#' + navOrder[idx + 1];
-						} else {
-							atBoundary = true;
+						} else if (bottomBoundary) {
+							// Second deliberate scroll after boundary — navigate even if elastic
+							// bounce moved scrollTop slightly off the bottom
+							atBoundary = false;
+							bottomBoundary = false;
+							clearTimeout(bottomBoundaryTimer);
+							bottomBoundaryTimer = null;
+							scrollLocked = true;
+							setTimeout(function() { scrollLocked = false; }, 600);
+							location.hash = '#' + navOrder[idx + 1];
+						} else if (atBottom) {
+							// First time reaching the bottom: arm the boundary
+							bottomBoundary = true;
+							clearTimeout(bottomBoundaryTimer);
+							bottomBoundaryTimer = setTimeout(function() {
+								bottomBoundary = false;
+								bottomBoundaryTimer = null;
+							}, 2000);
 							scrollLocked = true;
 							setTimeout(function() { scrollLocked = false; }, 500);
+						} else {
+							// Scrolling down through article, not yet at bottom
+							atBoundary = false;
 						}
 					}
 				} else if (delta < 0 && atTop) {
-					if (fitsInView || atBoundary) {
+					if (atBoundary) {
 						atBoundary = false;
+						bottomBoundary = false;
+						clearTimeout(bottomBoundaryTimer);
+						bottomBoundaryTimer = null;
 						scrollLocked = true;
-						setTimeout(function() { scrollLocked = false; }, 1200);
+						setTimeout(function() { scrollLocked = false; }, 600);
 						if (idx > 0)
 							location.hash = '#' + navOrder[idx - 1];
 						else
@@ -142,6 +172,8 @@
 						setTimeout(function() { scrollLocked = false; }, 500);
 					}
 				} else {
+					// delta < 0 and not at top: scrolling up within article or elastic bounce-back
+					// clear top boundary; bottomBoundary preserved (timer handles expiry)
 					atBoundary = false;
 				}
 			}
@@ -270,7 +302,7 @@
 
 									}, 25);
 
-							}, delay);
+							}, 0);
 
 					}
 
@@ -492,8 +524,9 @@
 		// Events.
 			$body.on('click', function(event) {
 
-				// Article visible? Hide.
-					if ($body.hasClass('is-article-visible'))
+				// Article visible? Hide. Skip if mid-transition or scroll-locked (prevents
+				// phantom clicks from fast trackpad swipes collapsing the panel).
+					if ($body.hasClass('is-article-visible') && !locked && !scrollLocked)
 						$main._hide(true);
 
 			});
