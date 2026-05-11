@@ -13,16 +13,34 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Pick random word, write JSON, and commit
+      - name: Pick random unused word, write JSON, and commit
         run: |
-          WORD=$(shuf -n 1 data/words.txt)
           DATE=$(TZ="Europe/Budapest" date +%Y-%m-%d)
+
+          # Extract already-used words from history
+          USED_WORDS=$(jq -r '.[].word' data/words-history.json)
+
+          # Pick a random word not in the history; fall back to fully random if exhausted
+          WORD=$(grep -vxFf <(echo "$USED_WORDS") data/words.txt | shuf -n 1)
+          if [ -z "$WORD" ]; then
+            WORD=$(shuf -n 1 data/words.txt)
+          fi
+
+          # Update word-of-day.json
           echo "{\"word\": \"$WORD\", \"date\": \"$DATE\"}" > data/word-of-day.json
+
+          # Prepend to words-history.json
           jq --arg word "$WORD" --arg date "$DATE" \
             '[{"word": $word, "date": $date}] + .' \
             data/words-history.json > tmp.json && mv tmp.json data/words-history.json
+
+          # Append new entry to reflections.json
+          jq --indent 4 --arg date "$DATE" --arg word "$WORD" \
+            '. + [{"date": $date, "word": $word, "text": ""}]' \
+            data/reflections.json > tmp.json && mv tmp.json data/reflections.json
+
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/word-of-day.json data/words-history.json
+          git add data/word-of-day.json data/words-history.json data/reflections.json
           git commit -m "Daily word: $WORD"
           git push
