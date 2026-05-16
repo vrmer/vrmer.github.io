@@ -498,6 +498,8 @@
 					var container   = document.getElementById('words-entries');
 					container.innerHTML = '';
 					history.forEach(function(entry, i) {
+						var match = reflections.find(function(r) { return r.date === entry.date; });
+						if (!match || !match.text) return;
 						var wordEl = document.createElement('h3');
 						wordEl.textContent = entry.word;
 						var dateEl = document.createElement('span');
@@ -508,22 +510,19 @@
 						headerEl.appendChild(wordEl);
 						headerEl.appendChild(dateEl);
 						container.appendChild(headerEl);
-						var match = reflections.find(function(r) { return r.date === entry.date; });
-						if (match && match.text) {
-							var reflEl = document.createElement('p');
-							reflEl.className = 'words-reflection';
-							reflEl.innerHTML = parseInline(match.text);
-							reflEl.style.display = 'none';
-							container.appendChild(reflEl);
-							var toggle = (function(el) {
-								return function(e) {
-									e.stopPropagation();
-									el.style.display = el.style.display === 'none' ? '' : 'none';
-								};
-							})(reflEl);
-							headerEl.style.cursor = 'pointer';
-							headerEl.addEventListener('click', toggle);
-						}
+						var reflEl = document.createElement('p');
+						reflEl.className = 'words-reflection';
+						reflEl.innerHTML = parseInline(match.text);
+						reflEl.style.display = 'none';
+						container.appendChild(reflEl);
+						var toggle = (function(el) {
+							return function(e) {
+								e.stopPropagation();
+								el.style.display = el.style.display === 'none' ? '' : 'none';
+							};
+						})(reflEl);
+						headerEl.style.cursor = 'pointer';
+						headerEl.addEventListener('click', toggle);
 						});
 				var wordsArticle = document.getElementById('words');
 					new MutationObserver(function() {
