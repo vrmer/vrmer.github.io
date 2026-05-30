@@ -502,13 +502,8 @@
 						if (!match || !match.text) return;
 						var wordEl = document.createElement('h3');
 						wordEl.textContent = entry.word;
-						var dateEl = document.createElement('span');
-						dateEl.className = 'words-date';
-						dateEl.textContent = entry.date;
 						var headerEl = document.createElement('div');
-						headerEl.style.cssText = 'display:flex;justify-content:space-between;align-items:baseline;';
 						headerEl.appendChild(wordEl);
-						headerEl.appendChild(dateEl);
 						container.appendChild(headerEl);
 						var reflEl = document.createElement('p');
 						reflEl.className = 'words-reflection';
